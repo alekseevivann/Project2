@@ -7,14 +7,14 @@
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="20">
 
-            <!-- Заголовок -->
+            
             <Label Text="🎤 ДИКТОФОН" 
                    FontSize="32" 
                    HorizontalOptions="Center"
                    FontAttributes="Bold"
                    TextColor="#2196F3" />
 
-            <!-- Индикатор записи -->
+            
             <Frame x:Name="recordingIndicator"
                    BackgroundColor="#FFEBEE"
                    Padding="15"
@@ -32,7 +32,7 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <!-- Индикатор воспроизведения -->
+            
             <Frame x:Name="playbackIndicator"
                    BackgroundColor="#E8F5E9"
                    Padding="15"
@@ -50,7 +50,7 @@
                 </VerticalStackLayout>
             </Frame>
 
-            <!-- Основные кнопки -->
+            
             <Grid ColumnDefinitions="*,*" ColumnSpacing="15">
                 <Button x:Name="recordButton"
                         Text="🎤 Записать"
@@ -74,7 +74,7 @@
                         Grid.Column="1" />
             </Grid>
 
-            <!-- Записи -->
+            
             <Label Text="📁 ЗАПИСИ" 
                    FontSize="20"
                    FontAttributes="Bold"

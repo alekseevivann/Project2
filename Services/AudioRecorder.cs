@@ -9,7 +9,6 @@ public class AudioRecorder
     private string currentRecordingPath;
     private DateTime recordingStartTime;
 
-    // Событие для обновления UI
     public event Action<TimeSpan> OnRecordingTimerUpdated;
 
     public async Task<bool> CheckPermissions()
@@ -45,14 +44,14 @@ public class AudioRecorder
             throw new Exception("Нет разрешений на запись аудио");
         }
 
-        // Создаем папку для записей
+       
         var recordingsFolder = Path.Combine(FileSystem.AppDataDirectory, "Recordings");
         if (!Directory.Exists(recordingsFolder))
         {
             Directory.CreateDirectory(recordingsFolder);
         }
 
-        // Генерируем имя файла
+        
         var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
         var fileName = $"Recording_{timestamp}.wav";
         currentRecordingPath = Path.Combine(recordingsFolder, fileName);
@@ -60,7 +59,7 @@ public class AudioRecorder
         isRecording = true;
         recordingStartTime = DateTime.Now;
 
-        // Запускаем таймер (в реальном приложении здесь будет работа с MediaRecorder)
+        
         _ = Task.Run(async () =>
         {
             while (isRecording)
@@ -71,7 +70,7 @@ public class AudioRecorder
             }
         });
 
-        // Создаем пустой файл (в реальном приложении здесь запись аудио)
+        
         File.WriteAllText(currentRecordingPath, "audio_data");
 
         return currentRecordingPath;
@@ -85,8 +84,8 @@ public class AudioRecorder
         isRecording = false;
         var duration = DateTime.Now - recordingStartTime;
 
-        // Здесь должен быть код остановки реальной записи
-        // Для примера просто ждем
+       
+       
         await Task.Delay(500);
 
         return duration;
@@ -98,7 +97,7 @@ public class AudioRecorder
     {
         if (File.Exists(filePath))
         {
-            // В реальном приложении: воспроизведение аудио
+           
             Application.Current.MainPage.DisplayAlert(
                 "Воспроизведение",
                 $"Воспроизводится: {Path.GetFileName(filePath)}",

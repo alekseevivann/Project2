@@ -22,7 +22,7 @@ public partial class MainPage : ContentPage
 
         try
         {
-            // Не создаем player здесь - создадим при воспроизведении
+           
             audioRecorder = AudioManager.Current.CreateRecorder();
 
             LoadRecordings();
@@ -81,19 +81,19 @@ public partial class MainPage : ContentPage
                 playbackIndicator.IsVisible = false;
             }
 
-            // Создаем папку для записей
+            
             var recordingsFolder = Path.Combine(FileSystem.AppDataDirectory, "Recordings");
             if (!Directory.Exists(recordingsFolder))
             {
                 Directory.CreateDirectory(recordingsFolder);
             }
 
-            // Создаем имя файла
+            
             var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
             var fileName = $"Запись_{timestamp}.wav";
             currentRecordingPath = Path.Combine(recordingsFolder, fileName);
 
-            // Начинаем запись
+            
             await audioRecorder.StartAsync(currentRecordingPath);
 
             isRecording = true;
@@ -104,7 +104,7 @@ public partial class MainPage : ContentPage
             stopButton.IsEnabled = true;
             stopButton.Text = "⏹️ Остановить запись";
 
-            // Запускаем таймер
+            
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
                 if (isRecording)
@@ -138,7 +138,7 @@ public partial class MainPage : ContentPage
                 stopButton.IsEnabled = false;
                 stopButton.Text = "⏹️ Стоп";
 
-                // Сохраняем запись в список
+                
                 var recording = new Recording
                 {
                     Name = $"Запись_{DateTime.Now:HH:mm}",
@@ -198,7 +198,7 @@ public partial class MainPage : ContentPage
                 {
                     currentPlayingRecording = recording;
 
-                    // Создаем player с файлом
+                    
                     audioPlayer = AudioManager.Current.CreatePlayer(recording.FilePath);
 
                     audioPlayer.PlaybackEnded += (s, args) =>
@@ -219,7 +219,7 @@ public partial class MainPage : ContentPage
                     stopButton.IsEnabled = true;
                     stopButton.Text = "⏹️ Остановить воспроизведение";
 
-                    // Таймер воспроизведения
+                    
                     Device.StartTimer(TimeSpan.FromSeconds(1), () =>
                     {
                         if (isPlaying && audioPlayer != null)
@@ -306,7 +306,7 @@ public partial class MainPage : ContentPage
                     Name = Path.GetFileNameWithoutExtension(file),
                     FilePath = file,
                     CreatedDate = File.GetCreationTime(file),
-                    Duration = TimeSpan.FromSeconds(30) // Временное значение
+                    Duration = TimeSpan.FromSeconds(30) 
                 };
 
                 recordings.Add(recording);
